@@ -1,0 +1,63 @@
+<div id="post-body-content">
+
+    <div class="meta-box-sortables ui-sortable">
+        <div class="postbox">
+            <div class="inside">
+                <table class="widefat">
+                    <thead>
+                    <tr>
+                        <th class="row-title">Parâmetros</th>
+                        <th>Valores</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <?php foreach ($parametros as $parametro => $valor): ?>
+
+                    <tr>
+                        <th colspan="2">
+                            <form action="<?= $salvar ?>" method="post">
+                                <label for="tablecell"><?= $parametro;?></label>
+
+                                <input type="hidden"
+                                       name="nome"
+                                       value="<?= $parametro;?>"
+                                       required/>
+
+                                <input type="text"
+                                       name="valor"
+                                       value="<?= $valor;?>"
+                                       class="large-text"
+                                       style="margin: 10px 0; padding: 5px 0;"
+                                       required/>
+
+                                <button class="button-primary" type="submit">
+                                    Salvar
+                                </button>
+                            </form>
+                        </th>
+                    </tr>
+
+                    <?php endforeach;; ?>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="postbox-container-1" class="postbox-container">
+    <div class="meta-box-sortables">
+        <div class="postbox">
+            <h2><span>Painel de Configuração</span></h2>
+            <div class="inside">
+                <p>
+                    Configure ao lado todas as configurações relacionadas ao sistema.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
