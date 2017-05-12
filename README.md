@@ -3,7 +3,7 @@
 Modulo Parametrização para o MocaBonita
 
 ```sh
-$ composer require jhorlima/siguema:dev-master --update-no-dev
+$ composer require jhorlima/parametrizacao:dev-master --update-no-dev
 ``` 
 
 Para integrar o modulo ao plugin, basta adicionar uma controller para a Parametrizacao e depois obter a view e método de salvar.
