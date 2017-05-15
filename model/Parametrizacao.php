@@ -27,7 +27,7 @@ class Parametrizacao
     {
         $validation = MbValidation::validate($dados)
             ->setValidations('nome', MbStringValidation::getInstance(), ['min' => 5, 'max' => 20])
-            ->setValidations('valor', MbStringValidation::getInstance(), ['min' => 1, 'max' => 100]);
+            ->setValidations('valor', MbStringValidation::getInstance(), ['min' => 1]);
 
         $validation->check(true);
 
