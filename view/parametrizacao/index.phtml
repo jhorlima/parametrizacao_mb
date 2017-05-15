@@ -25,12 +25,9 @@
                                        value="<?= $parametro;?>"
                                        required/>
 
-                                <input type="text"
-                                       name="valor"
-                                       value="<?= $valor;?>"
-                                       class="large-text"
-                                       style="margin: 10px 0; padding: 5px 0;"
-                                       required/>
+                                <textarea name="valor" cols="80" rows="10" class="large-text">
+                                <?= $valor;?>
+                                </textarea>
 
                                 <button class="button-primary" type="submit">
                                     Salvar
