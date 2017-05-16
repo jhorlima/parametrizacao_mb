@@ -27,7 +27,7 @@ class Parametrizacao
     {
         $validation = MbValidation::validate($dados)
             ->setValidations('nome', MbStringValidation::getInstance(), ['min' => 5, 'max' => 20])
-            ->setValidations('valor', MbStringValidation::getInstance(), ['min' => 1]);
+            ->setValidations('valor', ParametrizacaoValidation::getInstance());
 
         $validation->check(true);
 
@@ -40,23 +40,35 @@ class Parametrizacao
 
     /**
      * @param $nome
-     * @param null $defaul
-     * @return mixed|void
+     * @param null $default
+     * @paran bool $valueToString
+     *
+     * @return string
      */
-    public static function getParametro($nome, $defaul = null)
+    public static function getParametro($nome, $default = null, $valueToString = false)
     {
-        return get_option(self::$prefix . $nome, $defaul);
+        $value = get_option(self::$prefix . $nome, $default);
+
+        if(is_string($value)){
+            return $value;
+        } elseif (is_array($value)){
+            return $valueToString ? json_encode($value) : $value;
+        } else {
+            return null;
+        }
     }
 
     /**
      * @param array $nomes
+     * @paran bool $valueToString
+     *
      * @return array
      */
-    public static function getParametros(array $nomes)
+    public static function getParametros(array $nomes, $valueToString = false)
     {
         $dados = [];
         foreach ($nomes as $nome) {
-            $dados [$nome] = self::getParametro($nome);
+            $dados [$nome] = self::getParametro($nome, null, $valueToString);
         }
 
         return $dados;
@@ -64,9 +76,11 @@ class Parametrizacao
 
     /**
      * @param array $params
+     * @paran bool $valueToString
+     *
      * @return MbView
      */
-    public static function getMbView(array $params){
+    public static function getMbView(array $params, $valueToString = false){
         $mbView = new MbView();
 
         $mbView->setMbResponse(MocaBonita::getInstance()->getMbResponse());
@@ -77,7 +91,7 @@ class Parametrizacao
         $mbView->setViewPath(__DIR__ . "/../view/");
 
         $mbView->with('salvar', MocaBonita::getInstance()->getMbRequest()->fullUrlWithNewAction('salvar'));
-        $mbView->with('parametros', Parametrizacao::getParametros($params));
+        $mbView->with('parametros', Parametrizacao::getParametros($params, $valueToString));
 
         return $mbView;
 
