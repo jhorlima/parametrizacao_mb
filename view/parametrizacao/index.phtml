@@ -18,7 +18,7 @@
                     <tr>
                         <th colspan="2">
                             <form action="<?= $salvar ?>" method="post">
-                                <label for="tablecell"><?= $parametro;?></label>
+                                <label for="tablecell"><?= $parametro;?> (<?= gettype($valor)?>)</label>
 
                                 <input type="hidden"
                                        name="nome"
