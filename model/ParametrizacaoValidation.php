@@ -25,7 +25,11 @@ class ParametrizacaoValidation extends MbValidationBase
         $isArray = is_array($value);
 
         if ($isString) {
-            if ($this->isJson($value)) {
+            $valor = explode(PHP_EOL, str_replace("\r", "", $value));
+
+            if(count($valor) > 1 && array_shift($valor) == Parametrizacao::getParametro('array','array')){
+                $value = $valor;
+            } elseif ($this->isJson($value)) {
                 $value = json_decode($value, true);
             }
         } elseif ($isNumeric) {
