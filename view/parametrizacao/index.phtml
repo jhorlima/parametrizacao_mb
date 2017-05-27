@@ -25,9 +25,7 @@
                                        value="<?= $parametro;?>"
                                        required/>
 
-                                <textarea name="valor" cols="80" rows="10" class="large-text">
-                                    <?= is_array($valor) ? implode(PHP_EOL, $valor) : $valor ;?>
-                                </textarea>
+                                <textarea name="valor" cols="80" rows="10" class="large-text"><?= is_array($valor) ? implode(PHP_EOL, $valor) : $valor ;?></textarea>
 
                                 <button class="button-primary" type="submit">
                                     Salvar
