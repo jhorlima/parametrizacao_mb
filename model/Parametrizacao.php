@@ -16,7 +16,7 @@ class Parametrizacao
     /**
      * @var string
      */
-    protected static $prefix = 'siguema_';
+    protected static $prefix = 'parametrizacao_';
 
     /**
      * @param array $dados
@@ -52,7 +52,7 @@ class Parametrizacao
         if(is_string($value)){
             return $value;
         } elseif (is_array($value)){
-            return $valueToString ? json_encode($value) : $value;
+            return $valueToString ? json_encode($value, JSON_PRETTY_PRINT) : $value;
         } else {
             return null;
         }
@@ -95,5 +95,21 @@ class Parametrizacao
 
         return $mbView;
 
+    }
+
+    /**
+     * @return string
+     */
+    public static function getPrefix()
+    {
+        return self::$prefix;
+    }
+
+    /**
+     * @param string $prefix
+     */
+    public static function setPrefix($prefix)
+    {
+        self::$prefix = $prefix;
     }
 }
