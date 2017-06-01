@@ -23,6 +23,6 @@
         }
     },
     "require": {
-        "jhorlima/wp-mocabonita": "dev-master"
+        "jhorlima/wp-mocabonita": "3.1.0"
     }
 }
