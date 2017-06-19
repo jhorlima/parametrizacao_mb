@@ -1,21 +1,18 @@
 {
     "name": "jhorlima/parametrizacao",
     "description": "Modulo Parametrização para o MocaBonita",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "wordpress",
         "plugin",
         "mocabonita",
-        "wp-mocabonita",
-        "uema"
+        "wp-mocabonita"
     ],
-    "minimum-stability" : "dev",
-    "homepage": "http://gitbucket.uema.br:980/jhorlima/parametrizacao_mb",
+    "homepage": "https://github.com/jhorlima/parametrizacao",
     "type": "wordpress-framework-plugin",
     "authors": [
         {
             "name": "Jhordan Lima",
-            "email": "jhordanlima.uema.dpd@gmail.com",
             "role": "Developer"
         }
     ],
@@ -25,6 +22,6 @@
         }
     },
     "require": {
-        "jhorlima/wp-mocabonita": "dev-master"
+        "jhorlima/wp-mocabonita": ">=3.1.0"
     }
 }

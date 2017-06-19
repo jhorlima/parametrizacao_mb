@@ -3,15 +3,13 @@
 Modulo Parametrização para o MocaBonita
 
 ```sh
-$ composer require jhorlima/parametrizacao:dev-master --update-no-dev
+$ composer require jhorlima/parametrizacao
 ``` 
 
 Para integrar o modulo ao plugin, basta adicionar uma controller para a Parametrizacao e depois obter a view e método de salvar.
 
 ```php
 <?php
-
-//... restante do código
 
 use MocaBonita\controller\MbController;
 use MocaBonita\tools\MbException;
@@ -21,25 +19,42 @@ use Parametrizacao\model\Parametrizacao;
 
 class ParametrizacaoController extends MbController
 {
+    /**
+    * Lista de parametros que essa controller pode gerencias
+    *  
+    * @var string[] 
+    */
+    protected $parametros = [
+        'nome_padrao',
+        'quantidade_usuarios',
+        'lista_nomes',
+     ];
+    
+    /**
+    * @inheritdoc 
+    */
     public function indexAction(MbRequest $mbRequest, MbResponse $mbResponse)
     {
-        return Parametrizacao::getMbView([
-            'sigws_url',
-            'sigws_name',
-            'sigws_token',
-            'timeout',
-            'hash_query_lister',
-            'hash_query',
-        ]);
+        return Parametrizacao::getMbView($this->parametros);
     }
 
+    /**
+    * Action para salvar parametro
+ * 
+    * @param MbRequest $mbRequest
+    * @param MbResponse $mbResponse
+    * 
+    * @return MbView
+    * 
+    * @throws MbException
+    */
     public function salvarAction(MbRequest $mbRequest, MbResponse $mbResponse)
     {
         $mbView = $this->indexAction($mbRequest, $mbResponse);
 
         try {
             Parametrizacao::salvarParametro($mbRequest->input());
-            $mbResponse->redirect($mbRequest->fullUrlWithNewAction('index'));
+            return $this->indexAction($mbRequest, $mbResponse);
         } catch (MbException $e) {
             $e->setExceptionData($mbView);
             throw $e;
@@ -48,4 +63,17 @@ class ParametrizacaoController extends MbController
         }
     }
 }
+```
+
+Cada parametro pode ser obtido através do método 
+
+```php
+<?php
+
+use Parametrizacao\model\Parametrizacao;
+
+Parametrizacao::getParametro('nome_padrao'); //Obter parametro nome
+Parametrizacao::getParametro('quantidade_usuarios', 10); // Obter parametro quantidade_usuarios, caso não exista, retornar 10
+Parametrizacao::getParametro('lista_nomes', [], true); // Obter parametro lista_nomes, caso não exista, retornar um array vázio e depois converter-lo em JSON
+
 ```
