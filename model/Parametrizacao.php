@@ -26,7 +26,7 @@ class Parametrizacao
     public static function salvarParametro(array $dados)
     {
         $validation = MbValidation::validate($dados)
-            ->setValidations('nome', MbStringValidation::getInstance(), ['min' => 5, 'max' => 20])
+            ->setValidations('nome', MbStringValidation::getInstance(), ['min' => 5, 'max' => 30])
             ->setValidations('valor', ParametrizacaoValidation::getInstance());
 
         $validation->check(true);
