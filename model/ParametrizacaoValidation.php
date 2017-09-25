@@ -25,7 +25,7 @@ class ParametrizacaoValidation extends MbValidationBase
         $isArray = is_array($value);
 
         if ($isString) {
-            $valor = explode(PHP_EOL, str_replace('\r', "", $value));
+            $valor = explode(PHP_EOL, str_replace("\r", "", $value));
 
             if(count($valor) > 1 && array_shift($valor) == Parametrizacao::getParametro('array','array')){
                 $value = $valor;
