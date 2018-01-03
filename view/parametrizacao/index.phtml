@@ -13,17 +13,14 @@
 
                     <tbody>
 
-                    <?php foreach ($parametros as $parametro => $valor): ?>
+                    <?php foreach ($this->getAttribute('parametros') as $parametro => $valor): ?>
 
                     <tr>
                         <th colspan="2">
-                            <form action="<?= $salvar ?>" method="post">
+                            <form action="<?= $this->getAttribute('salvar') ?>" method="post">
                                 <label for="tablecell"><?= $parametro;?> (<?= gettype($valor)?>)</label>
 
-                                <input type="hidden"
-                                       name="nome"
-                                       value="<?= $parametro;?>"
-                                       required/>
+                                <input type="hidden" name="nome" value="<?= $parametro;?>" required/>
 
                                 <textarea name="valor" cols="80" rows="10" class="large-text"><?= is_array($valor) ? implode(PHP_EOL, $valor) : $valor ;?></textarea>
 

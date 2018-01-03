@@ -76,9 +76,11 @@ class Parametrizacao
 
     /**
      * @param array $params
-     * @paran bool $valueToString
+     * @param bool  $valueToString
      *
      * @return MbView
+     * @paran bool $valueToString
+     *
      */
     public static function getMbView(array $params, $valueToString = false){
         $mbView = new MbView();
@@ -90,7 +92,7 @@ class Parametrizacao
         $mbView->setAction('index');
         $mbView->setViewPath(__DIR__ . "/../view/");
 
-        $mbView->with('salvar', MocaBonita::getInstance()->getMbRequest()->fullUrlWithNewAction('salvar'));
+        $mbView->with('salvar', MocaBonita::getInstance()->getMbRequest()->urlAction('salvar'));
         $mbView->with('parametros', Parametrizacao::getParametros($params, $valueToString));
 
         return $mbView;
